@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour {
 	private float nextFire;
 	private Quaternion calibrationQuaternion;
 
+	public SimpleTouchPad touchPad;
 
 	void Start(){
 
@@ -41,8 +42,11 @@ public class PlayerController : MonoBehaviour {
 		//float moveVertical = Input.GetAxis ("Vertical");
 
 		//Vector3 movement = new Vector3 (moveHorizontal, 0.0f, moveVertical);
-		Vector3 acceleration = Input.acceleration;
-		Vector3 movement = new Vector3 (acceleration.x, 0.0f, acceleration.y);
+		//Vector3 acceleration = Input.acceleration;
+		//Vector3 movement = new Vector3 (acceleration.x, 0.0f, acceleration.y);
+
+		Vector2 direction = touchPad.GetDirection();
+		Vector3 movement = new Vector3 (direction.x, 0.0f, direction.y);
 		
 		rigidbody.velocity = movement * speed;
 
